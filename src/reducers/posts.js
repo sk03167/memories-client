@@ -11,7 +11,10 @@ export function posts (posts = [], action){
         case UPDATE:
             return posts.map((post)=>post._id ===action.payload._id? action.payload: post);
         case DELETE:
-            return posts.filter((post)=>post._id!==action.payload);
+            // console.log(posts);
+            const rem_post = posts.filter((post)=>post._id!==action.payload);
+            // console.log(rem_post);
+            return rem_post;
         case LIKE:
             return posts.map((post)=>post._id ===action.payload._id? action.payload: post);
         default:{

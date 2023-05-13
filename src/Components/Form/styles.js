@@ -1,24 +1,46 @@
-import { makeStyles } from '@mui/styles';
-export default makeStyles((theme) => ({
+// import { makeStyles } from '@mui/styles';
+// export default makeStyles((theme) => ({
+//   root: {
+//     '& .MuiTextField-root': {
+//       margin: theme.spacing(1),
+//     },
+//   },
+//   paper: {
+//     padding: theme.spacing(2),
+//   },
+//   form: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     justifyContent: 'center',
+//   },
+//   fileInput: {
+//     width: '97%',
+//     margin: '10px 0',
+//   },
+//   buttonSubmit: {
+//     marginBottom: 10,
+//   },
+// }));
+
+export const classes = {
   root: {
-    '& .MuiTextField-root': {
-      margin: 1
-    }
-  },
+        '& .MuiTextField-root': {
+          margin: (theme)=>theme.spacing(1),
+        },
+      },
   paper: {
-    padding: "8%"
+    padding: (theme)=>theme.spacing(2),
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   fileInput: {
     width: '97%',
-    margin: '10px 0'
+    margin: '10px 0',
   },
   buttonSubmit: {
-    marginBottom: "10%",
-    padding: "15px 32px"
+    marginBottom: 10,
   },
-}));
+}

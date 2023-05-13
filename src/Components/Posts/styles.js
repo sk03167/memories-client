@@ -1,5 +1,5 @@
-import { makeStyles } from '@mui/styles';
-export default makeStyles((theme) => ({
+// import { makeStyles } from '@mui/styles';
+export const classes ={
   mainContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -10,4 +10,4 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
-}));
+};

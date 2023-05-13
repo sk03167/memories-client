@@ -40,7 +40,7 @@ export const updatePostAct = (id, post)=>async(dispatch)=>{
 
 export const deletePostAct = (id)=>async(dispatch)=>{
     try {
-        // const {data} = await api.deletePost(id);
+        const {data} = await api.deletePost(id);
         // console.log("resonse after delete is",data);
         const action = {type: DELETE, payload: id}
         // console.log("Calling action",action);
