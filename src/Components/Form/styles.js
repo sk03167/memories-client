@@ -30,6 +30,7 @@ export const classes = {
       },
   paper: {
     padding: (theme)=>theme.spacing(2),
+    borderRadius:3
   },
   form: {
     display: 'flex',

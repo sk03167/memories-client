@@ -14,15 +14,16 @@ import { classes } from './styles';
 import { useEffect, useState } from 'react';
 
 export default function Navbar(){
-    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile'))?.result);
    
     //did this to change the state of page on auth change. but could also be done based on useLocation hook of reac router dom. You can 
     //use the "location = useLocation()" and put this variable in the dependecy list of the useEffect.
-    const sel = useSelector((state)=>state?.authReducer);
+    const sel = useSelector((state)=>state?.authReducer.authData);
+    // console.log(sel)
     const dispatch = useDispatch();
     // console.log("authstate",sel);
     useEffect(()=>{
-        setUser(JSON.parse(localStorage.getItem('profile')));
+        setUser(JSON.parse(localStorage.getItem('profile'))?.result);
     },[sel])
     
     const handleLogout = ()=>{
@@ -48,7 +49,7 @@ export default function Navbar(){
         <Toolbar sx={classes.Toolbar}>
             {user?(
                 <div style={classes.profile}>
-                    <Avatar sx={classes.purple} alt={user.name} src={user.picture}>{user.name.charAt(0)}</Avatar>
+                    <Avatar sx={classes.purple} alt={user.name} src={user.picture}>{user?.name?.charAt(0)}</Avatar>
                     <Paper elevation={2} variant='outlined' sx={{alignItems:"center"}}>
                     <Typography sx={classes.userName} variant = "h6">{user.name}</Typography>
                     </Paper>

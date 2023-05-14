@@ -50,8 +50,10 @@ export default function Auth(){
     const  googleSuccess= async (res)=>{
         const decoded = jwt_decode(res.credential);
         // const userData = {...decoded}
-        dispatch(authAct(decoded, navigate));
-        // console.log(res);
+        // console.log({result:decoded, token:res.credential});
+        const gauthData = {result:decoded, token:res.credential};
+        dispatch(authAct(gauthData, navigate));
+        
     }
     const googleFailure=(res)=>{
         console.log("Google Login Unsuccessful", res)

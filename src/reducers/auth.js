@@ -5,6 +5,7 @@ export function authReducer (user = {}, action){
     
     switch(action.type){
         case AUTH:
+            // console.log("auth reducer call",action.payload)
             localStorage.setItem('profile',JSON.stringify({...action?.payload.user}))
             action.payload.navigate("/")
             // console.log("auth reducer call",action.payload)
