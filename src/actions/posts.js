@@ -14,10 +14,19 @@ export async function getPostsAct(dispatch){
     }
 } 
 
+export const getPostsBySearchAct=(searchQuery)=> async (dispatch)=>{
+    try {
+        const {data:{data}} = await api.getPostsBySearch(searchQuery);
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createPost = (post)=>async(dispatch)=>{
     try {
         const {data} = await api.createPost(post);
-        console.log("resonse after create is",data);
+        // console.log("resonse after create is",data);
         const action = {type: CREATE, payload: data}
         // console.log("Calling action",action);
         dispatch(action);

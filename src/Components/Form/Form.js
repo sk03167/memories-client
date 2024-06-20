@@ -13,25 +13,38 @@ const Form = ({currentId, setCurrentId})=>{
     // const classes = useStyles();
 
     const post = useSelector((state)=>currentId?state.posts.find((p)=>p._id===currentId):null);
-
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const sel = useSelector((state)=>state?.authReducer.authData);
     const dispatch = useDispatch();
 
     const [postData, setPostData] = useState({
-        creator:"",title:"",message:"",tags:"",selectedFile:""
+       stitle:"",message:"",tags:"",selectedFile:""
     });
 
+ 
     useEffect(()=>{
         if(post)setPostData(post);
-    },[post])
+        
+    },[post, sel])
+
+    if(!user?.result?.name){
+        return(
+            <Paper sx={classes.paper}>
+                <Typography variant="h6" align = "center">
+                    Please sign in or create an account
+                </Typography>
+            </Paper>
+        )
+    }
 
     const handleSubmit = (e)=>{
         e.preventDefault();
         if(currentId){
             // console.log("dispatching update request");
-            dispatch(updatePostAct(currentId, postData));
+            dispatch(updatePostAct(currentId, {...postData,name:user?.result?.name}));
         }
         else{
-            dispatch(createPost(postData));
+            dispatch(createPost({...postData,name:user?.result?.name}));
         };
         clear();
     }
@@ -39,7 +52,7 @@ const Form = ({currentId, setCurrentId})=>{
     const clear = ()=>{
         setCurrentId(null);
         setPostData({
-            creator:"",title:"",message:"",tags:"",selectedFile:""
+            title:"",message:"",tags:"",selectedFile:""
         })
     }
     return(
@@ -48,7 +61,7 @@ const Form = ({currentId, setCurrentId})=>{
             // style={`${classes.root} ${classes.form}`} 
             onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId?"Editing":"Creating"} a Memory</Typography>
-                <TextField sx={{padding:1}} name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e)=>setPostData({...postData, creator:e.target.value})}></TextField>
+                {/* <TextField sx={{padding:1}} name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e)=>setPostData({...postData, creator:e.target.value})}></TextField> */}
                 <TextField sx={{padding:1}} name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})}></TextField>
                 <TextField sx={{padding:1}} name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData, message:e.target.value})}></TextField>
                 <TextField sx={{padding:1}} name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={(e)=>setPostData({...postData, tags:e.target.value.split(",")})}></TextField>

@@ -33,7 +33,7 @@ export default function Auth(){
             dispatch(signinAct(formData,navigate) )
         }
 
-        console.log(formData);
+        // console.log(formData);
     };
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]:e.target.value})
